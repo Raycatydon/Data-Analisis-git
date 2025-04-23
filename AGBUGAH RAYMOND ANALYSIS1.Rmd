@@ -1,0 +1,229 @@
+---
+title:        "Categorical Data Analysis"
+subtitle: "The impact of Digital Marketing in Nigeria"
+author:        " Agbugah Raymond"
+date:          "`r Sys.Date()`"
+theme:          paper
+---
+
+```{r setup, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = FALSE, message = FALSE)
+```
+
+#   **INTRODUCTION**
+Over the last ten years, Nigeria's e-commerce sector has grown significantly due to rising smart phone usage, middle class expansion, and internet penetration (Ayo et al., 2011; Internet World, 2014). E-commerce companies now depend heavily on digital marketing to help them reach a larger audience, customize consumer interactions, and increase customer engagement (Tiago & Veríssimo, 2014). For the purpose of creating marketing strategies that effectively drive sales and foster client loyalty, it is imperative to comprehend customer behaviour in this digital context.
+The worldwide business landscape has seen a fundamental transformation due to the swift progress of digital technology, with e-commerce emerging as a crucial industry (Eze, Chinedu-Eze, & Bello, 2019). Nigeria stands out as a prominent site for the expansion of e-commerce, with over 108 million internet users as of 2023 (Statista, 2023). Nigeria had a 43% internet penetration rate at the time, which demonstrated the enormous online audience that was accessible to companies (Adeniran & Nwankwo, 2023). Businesses must use cutting-edge marketing techniques in order to effectively interact with and draw in the increasing number of online customers as a result of the digital revolution. Nigerian companies need to use digital marketing strategies and solutions that cater to the distinct tastes and online habits of the nation's diversified online population if they want to be competitive in this dynamic industry (Ogunyemi, 2022).
+Digital marketing, which includes various online platforms including social media, email, search engines, and content marketing, has grown to be a crucial instrument for e-commerce companies seeking to establish a connection with their customers (Chaffey & Ellis-Chadwick, 2019). Since maximizing marketing strategy depends on knowing how these digital marketing approaches affect consumer behavior, there is a great deal of interest in how effective they are at influencing consumer behavior (Smith, 2020). To obtain a competitive edge in the quickly changing Nigerian market, where digital adoption is increasing yet varies across different demographics (Okonkwo, 2021), firms need to develop a sophisticated understanding of how digital marketing affects customer purchasing decisions. Businesses may increase engagement, boost brand perception, and achieve higher sales by adjusting their digital marketing strategies to the distinct interests and behaviors of Nigerian consumers.
+Previous studies have highlighted how digital marketing has a big impact on consumers' views and intentions to buy. For example, Chaffey and Ellis-Chadwick (2019) point out that effective digital marketing techniques can raise brand awareness, improve consumer engagement, and eventually increase sales conversions. They contend that customized content and data analytics-driven targeted digital campaigns work especially well at piqueing consumers' interests and influencing their decisions to buy. Observations from the Nigerian market also offer more proof of the influence internet marketing has over customer behavior. According to Okonkwo (2021), social media sites like Facebook, Instagram, and Twitter have a significant impact on how Nigerian consumers make decisions. Through influencer collaborations, interactive content, and targeted adverts, businesses can reach a wide audience, foster brand loyalty, and stimulate purchases thanks to the widespread use and active participation on these platforms. The convergence of regional social media usage and global digital marketing concepts highlights the revolutionary potential of digital marketing in Nigeria's e-commerce industry.
+However, research focusing on the subtle effects of digital marketing on customer choice in the Nigerian e-commerce industry is conspicuously lacking. Research that has already been done tends to concentrate on the general effects of digital marketing rather than exploring the particular characteristics of the Nigerian market, such as cultural preferences, economic variables, and rates of technological adoption (Eze et al., 2019). In order to close this gap, this study project will methodically investigate the ways in which Nigerian customers' purchase decisions are influenced differently by different digital marketing strategies, such as influencer endorsements, email campaigns, mobile marketing, SEO, and social media marketing. The study will offer insightful information that will assist companies in customizing their digital marketing initiatives to more effectively satisfy the demands and preferences of their target audience in Nigeria by thoroughly examining these tactics and evaluating their efficacy in that country.
+
+# **Statement of the Problem** 
+
+Notwithstanding Nigeria's booming e-commerce industry, there is limited research on how digital marketing, in all its forms specifically affects consumer purchase decisions. Research works that specifically speaks on how effective the various digital marketing strategies, including search engine optimization, influencer marketing, content marketing, email marketing, and social media marketing are to the market is largely still insignificant. There is yet still to be an evidence-backed understanding of the consumer behaviours that influences the effectiveness of digital marketing strategies in the country (Eze & Bello, 2016). This study aims to fill this gap by examining what direct impact digital marketing has on consumer purchase decisions in the Nigerian e-commerce sector
+
+# **AIM AND OBJECTIVES OF THE STUDY**
+The why of this research proposal is to impact of targeted digital marketing operations has on whether a consumer will buy an item or patronise a service on not. This will offer significant economic value to ecommerce businesses operating within the country as it will provide insights into what strategies works, points of contacts and interaction with the various mediums and apparatus within which their digital marketing operations are carried out.
+The objectives of the research are:
+
+1.	To examine how digital marketing strategies impact consumer purchase decisions in the Nigerian e-commerce market.
+
+1.	To evaluate the impact of consumer satisfaction and loyalty in response to digital marketing strategies.
+
+1.	To identify the most effective digital marketing strategies used Nigerian e-commerce companies.
+
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+library(readr)
+library(dplyr)
+library(gmodels)
+library(ggplot2)
+library(tidyverse)
+library(tidyr)
+library(kableExtra)
+library(tinytex)
+library(DT)
+library(RColorBrewer)
+```
+
+# **DATA IMPORTATION**
+```{r,message=FALSE}
+dan_work <- read.csv("C:/Users/Hp/Desktop/files/Raymond R workshop/Copy of Dan_Work_(Responses)(2).csv",stringsAsFactors = TRUE)
+```
+
+```{r}
+DT::datatable(
+  head(dan_work,451 ),
+  fillContainer = FALSE, options = list(pagelength=27)
+)
+```
+#  **NOTIFICATIONS**
+1. Let marketinfluence =What.type.of.digital.marketing.content.influences.your.purchase.decision.the.most.
+
+ 1. Let Onlinereview_impact = How.much.do.online.reviews.impact.your.decision.to.purchase.a.product
+ 
+ 1. Let Purchasesocial.media = How.likely.are.you.to.purchase.a.product.due.to.advertisement.you.saw.on.social.media.
+
+ 1. Let Product_content = How.likely.are.you.to.purchase.a.product.you.saw.due.to.content.marketing.you.saw.
+
+ 1. Let satisfied_online.shopping = How.satisfied.are.you.with.the.online.shopping.experiences.you.have.had.in.the.past.one.month.or.two.
+
+ 1. Let market_strategy = Which.digital.marketing.strategies.do.you.find.most.effective.in.engaging.you.
+
+1. Let freqused_ecomerce = Which.e.commerce.platforms.do.you.frequently.use.
+
+1. Let return_sameecommerce = How.often.do.you.return.to.the.same.e.commerce.platform.for.future.purchases.due.to.their.effective.digital.marketing.strategies.
+
+1. Let  discount_promo =Do.discounts.or.promotions.seen.online.influence.your.purchase.decisions
+
+1. let satisfaction=How.satisfied.are.you.with.the.online.shopping.experiences.you.have.had.in.the.past.one.month.or.two.
+
+1. Let recommend.ecom = How.likely.are.you.to.recommend.an.e.commerce.platform.to.others.based.on.your.satisfaction.with.their.digital.marketing.
+ 
+1. Let rate = How.do.you.rate.the.effectiveness.of.social.media.campaigns.in.driving.your.purchase.decisions.
+
+1. let influencer.marketing=How.effective.do.you.find.influencer.marketing.in.affecting.your.purchasing.choices.
+
+1. most_effective=In.your.opinion..which.e.commerce.platform.has.the.most.effective.digital.marketing.strategy.
+
+#  **RENAMING OF COLUMNS**
+```{r}
+dan_work1 <- select(dan_work,7,9,10,11,13,19,20,21,23,24,25,26,27)
+colnames(dan_work1) <- c("freqused_ecomerce","market_influence",
+                 "Online.review_impact","Purchase_social.media",
+                    "Product_content","discount_promo",
+            "satisfaction","recommend.ecom","return_sameecommerce",
+            "market_strategy","rate"," influencer.marketing",
+            " most_effective")
+```
+
+```{r}
+DT::datatable(
+  head(dan_work1,451 ),
+  fillContainer = FALSE, options = list(pagelength=13)
+)
+```
+
+#  **DATA ANALYSIS**
+
+```{r}
+dan_work1 |> summary() |> 
+ DT::datatable(
+  head(dan_work1,451 ),
+  fillContainer = FALSE, options = list(pagelength=13)
+) 
+```
+
+From the table, you understand that it explains the counts of each of the variables. For example, you observe that 136 people 
+frequently use jumia, 103 people frequently use konga as their
+e.commerce platform etc, in the table you notice that 113 people
+are been influenced by videos,84 by images,63 by content marketing
+etc for their purchase decisions.
+
+```{r}
+ecommerce_platform <- table(dan_work1$freqused_ecomerce)
+```
+
+```{r}
+prop.table(ecommerce_platform) |> 
+  kableExtra::kable()
+```
+
+```{r fig.height=10, fig.width=10, warning=FALSE}
+ggplot(data = dan_work1,mapping = aes(x=freqused_ecomerce,
+                                      fill=freqused_ecomerce))+
+         geom_bar()+
+  scale_fill_brewer(palette = "Dark2")+
+  theme(legend.position = "none",
+        text = element_text(size = 10))+
+  labs(
+    title = "Frequently used E.commerce Platform",
+        X = "freqused_ecomerce",
+        Y = "Frequency"
+  )
+```
+
+From the result you find out jumia is the most frequently used
+E.commerce platform with over 30.2% of the entire population 
+subscribing to it then followed by Konga with over 22.8% subscribing
+to it etc.
+```{r}
+marketinfluence <- table(dan_work1$market_influence)
+```
+
+```{r}
+prop.table(marketinfluence) |> 
+  kableExtra::kable()
+```
+
+```{r,fig.height=10,fig.width=10,warning=FALSE}
+ggplot(data = dan_work1,mapping = aes(x=market_influence,
+                                      fill=market_influence))+
+         geom_bar()+
+  scale_fill_brewer(palette = "Dark2")+
+  theme(legend.position = "none",
+        text = element_text(size = 10))+
+  labs(
+    title = "Marketing Content that Influence Purchase Decision",
+        X = "marketinfluence",
+        Y = "Frequency"
+  )
+```
+
+From the analysis you discover that videos is the highest marketing
+content that influences customers purchase decision with 25.1% of
+the entire population  subscribing to it then followed by images with 18.6% using it and content marketing with 13.9% etc.
+
+```{r}
+Onlinereview_impact <- table(dan_work1$Online.review_impact)
+```
+
+```{r}
+prop.table(Onlinereview_impact) |> 
+  kableExtra::kable()
+```
+
+```{r,fig.height=10,fig.width=10,warning=FALSE}
+ggplot(data = dan_work1,mapping = aes(x=Online.review_impact,
+                                      fill=Online.review_impact))+
+         geom_bar()+
+  scale_fill_brewer(palette = "Dark2")+
+  theme(legend.position = "none",
+        text = element_text(size = 10))+
+  labs(
+    title = "Impact Of Online Reviews On Purchase Decisions",
+        X = "Onlinereview_impact",
+        Y = "Frequency"
+  )
+```
+
+From the analysis you discover that 8.2% of the entire population
+are extremely impacted by online review, 25.7% are moderately impacted, 12.9% are not impacted at all by online review, 24.6% are significantly while 28.6% are slightly impacted by online review.
+
+```{r}
+Purchasesocial.media <- table(dan_work1$Purchase_social.media)
+```
+
+```{r}
+prop.table(Purchasesocial.media) |> 
+  kableExtra::kable()
+```
+
+```{r,fig.height=10,fig.width=10,warning=FALSE}
+ggplot(data = dan_work1,mapping = aes(x=Purchase_social.media,
+                                      fill=Purchase_social.media))+
+         geom_bar()+
+  scale_fill_brewer(palette = "Dark2")+
+  theme(legend.position = "none",
+        text = element_text(size = 10))+
+  labs(
+    title = "Purchasing Product due to Advert on Social Media",
+        X = "Purchasesocial.media",
+        Y = "Frequency"
+  )
+```
+
+
+Looking at the analysis you see that 2.9% of the population are extremely likely to purchase a product due to adverts they saw on social media, 33.9% are moderately likely to purchase a product they saw on media, 34.4% are not likely to purchase a product due to advert on media., 11.1 slightly purchase product due to advert on media while 17.7 are very likely to purchase due to advert on so
+
+
+
